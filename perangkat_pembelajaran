@@ -1,1 +1,2382 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Ruang Belajar Guru</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =====================================================
+           RESET & DASAR
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+
+            --dark: #172033;
+            --text: #526071;
+            --muted: #8b95a7;
+
+            --light: #f5f8ff;
+            --white: #ffffff;
+
+            --border: #e5eaf2;
+
+            --shadow:
+                0 15px 40px rgba(37, 99, 235, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            color: var(--dark);
+            background: #ffffff;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            height: 75px;
+            display: flex;
+            align-items: center;
+
+            background: rgba(255,255,255,.96);
+
+            border-bottom: 1px solid var(--border);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 25px;
+        }
+
+        .logo span span {
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #657084;
+
+            transition: .3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+
+            border: none;
+            background: none;
+
+            font-size: 23px;
+            color: var(--dark);
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f8ff,
+                    #ffffff
+                );
+
+            padding: 90px 0;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+
+            align-items: center;
+
+            gap: 70px;
+        }
+
+        .badge,
+        .section-label {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            background: #eaf1ff;
+
+            color: var(--primary);
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 62px);
+
+            line-height: 1.15;
+
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            max-width: 600px;
+
+            color: var(--text);
+
+            font-size: 16px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 13px 20px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--dark);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+
+        /* =====================================================
+           HERO ILLUSTRATION
+        ===================================================== */
+
+        .hero-image {
+            height: 400px;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .teacher-circle {
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dbeafe,
+                    #eff6ff
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--primary);
+
+            font-size: 100px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .floating-card {
+            position: absolute;
+
+            background: white;
+
+            padding: 15px 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.1);
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .floating-card i {
+            font-size: 25px;
+            color: var(--primary);
+        }
+
+        .floating-card small {
+            display: block;
+            color: #8993a5;
+        }
+
+        .card-one {
+            top: 40px;
+            left: 10px;
+        }
+
+        .card-two {
+            right: 0;
+            bottom: 50px;
+
+            animation-delay: 1s;
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+
+        /* =====================================================
+           SECTION
+        ===================================================== */
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            max-width: 650px;
+
+            margin: 0 auto 50px;
+        }
+
+        .section-heading h2,
+        .teacher-info h2 {
+            font-size: 36px;
+
+            line-height: 1.25;
+
+            margin: 12px 0;
+        }
+
+        .section-heading p {
+            color: var(--text);
+        }
+
+
+        /* =====================================================
+           FEATURE CARDS
+        ===================================================== */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 28px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            transition: .3s;
+
+            background: white;
+
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow: var(--shadow);
+
+            border-color: #cddcff;
+        }
+
+        .icon-box {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+        }
+
+        .blue {
+            background: #eaf1ff;
+            color: #2563eb;
+        }
+
+        .purple {
+            background: #f0eaff;
+            color: #7c3aed;
+        }
+
+        .orange {
+            background: #fff1df;
+            color: #ea580c;
+        }
+
+        .red {
+            background: #ffe7e7;
+            color: #dc2626;
+        }
+
+        .green {
+            background: #e7f8ef;
+            color: #16a34a;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--text);
+
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            font-size: 12px;
+
+            color: var(--primary);
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 0 auto 45px;
+
+            position: relative;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+
+            padding: 16px 50px 16px 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-family: inherit;
+            font-size: 14px;
+
+            transition: .3s;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+
+            box-shadow:
+                0 0 0 4px rgba(37,99,235,.08);
+        }
+
+        .search-wrapper i {
+            position: absolute;
+
+            right: 20px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--muted);
+        }
+
+
+        /* =====================================================
+           RESOURCE CARDS
+        ===================================================== */
+
+        .resource-section {
+            display: none;
+        }
+
+        .resource-section.show {
+            display: block;
+        }
+
+        .resource-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .resource-card {
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            background: white;
+
+            transition: .3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: var(--shadow);
+        }
+
+        .resource-card .resource-icon {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            font-size: 20px;
+        }
+
+        .resource-card h3 {
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+        .resource-card p {
+            color: var(--text);
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           TEACHER
+        ===================================================== */
+
+        .teacher-section {
+            padding: 90px 0;
+
+            background: var(--light);
+        }
+
+        .teacher-container {
+            display: grid;
+
+            grid-template-columns:
+                .8fr 1.2fr;
+
+            align-items: center;
+
+            gap: 70px;
+        }
+
+        .teacher-photo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo-placeholder {
+            width: 280px;
+            height: 340px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dbeafe,
+                    #eff6ff
+                );
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 90px;
+
+            color: var(--primary);
+
+            box-shadow: var(--shadow);
+        }
+
+        .teacher-info p {
+            color: var(--text);
+
+            margin-bottom: 15px;
+        }
+
+        .teacher-details {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin: 25px 0;
+        }
+
+        .detail-box {
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+        }
+
+        .detail-box strong {
+            display: block;
+
+            font-size: 12px;
+
+            color: var(--muted);
+
+            margin-bottom: 3px;
+        }
+
+        .detail-box span {
+            font-weight: 600;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           VIDEO
+        ===================================================== */
+
+        .video-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+        .video-card {
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            background: white;
+
+            transition: .3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: var(--shadow);
+        }
+
+        .video-container {
+            position: relative;
+
+            padding-bottom: 56.25%;
+
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .video-content p {
+            color: var(--text);
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           STATISTICS
+        ===================================================== */
+
+        .stats-section {
+            padding: 60px 0;
+
+            background: var(--primary);
+
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            text-align: center;
+        }
+
+        .stat {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 3px;
+        }
+
+        .stat i {
+            font-size: 24px;
+
+            margin-bottom: 5px;
+        }
+
+        .stat strong {
+            font-size: 30px;
+        }
+
+        .stat span {
+            opacity: .8;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #111827;
+
+            color: white;
+
+            padding-top: 60px;
+        }
+
+        .footer-container {
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr;
+
+            gap: 60px;
+
+            padding-bottom: 50px;
+        }
+
+        .footer-logo {
+            margin-bottom: 15px;
+        }
+
+        .footer-container p {
+            color: #9ca3af;
+
+            font-size: 13px;
+
+            max-width: 400px;
+        }
+
+        .footer-links {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-links p {
+            color: #9ca3af;
+
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #283142;
+
+            text-align: center;
+
+            padding: 20px;
+
+            color: #8b95a7;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           NOTIFICATION
+        ===================================================== */
+
+        .notification {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            background: #172033;
+
+            color: white;
+
+            padding: 14px 20px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.2);
+
+            font-size: 13px;
+
+            transform:
+                translateY(100px);
+
+            opacity: 0;
+
+            transition: .3s;
+
+            z-index: 2000;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 950px) {
+
+            nav {
+                position: absolute;
+
+                top: 75px;
+                left: 0;
+
+                width: 100%;
+
+                background: white;
+
+                flex-direction: column;
+
+                padding: 25px;
+
+                display: none;
+
+                box-shadow:
+                    0 15px 30px rgba(0,0,0,.08);
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .teacher-container {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .teacher-photo {
+                order: 2;
+            }
+
+            .teacher-info {
+                order: 1;
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 30px;
+            }
+
+            .footer-container {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .resource-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 650px) {
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .teacher-circle {
+                width: 210px;
+                height: 210px;
+
+                font-size: 70px;
+            }
+
+            .floating-card {
+                transform: scale(.8);
+            }
+
+            .feature-grid,
+            .resource-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading h2,
+            .teacher-info h2 {
+                font-size: 28px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .teacher-details {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="#beranda" class="logo">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            <span>
+                Ruang<span>Belajar</span>
+            </span>
+
+        </a>
+
+
+        <nav id="navMenu">
+
+            <a href="#beranda" class="active">
+                Beranda
+            </a>
+
+            <a href="#materi">
+                Materi
+            </a>
+
+            <a href="#modul">
+                Modul Ajar
+            </a>
+
+            <a href="#lkpd">
+                LKPD
+            </a>
+
+            <a href="#video">
+                Video
+            </a>
+
+            <a href="#tentang">
+                Tentang
+            </a>
+
+        </nav>
+
+
+        <button
+            class="menu-toggle"
+            onclick="toggleMenu()">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="beranda">
+
+    <div class="container hero-container">
+
+        <div class="hero-content">
+
+            <span class="badge">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                Media Pembelajaran Digital
+
+            </span>
+
+
+            <h1>
+
+                Belajar Lebih Mudah,
+                <span>
+                    Belajar Lebih Bermakna.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Selamat datang di ruang belajar digital.
+                Temukan materi, modul ajar, LKPD, dan
+                video pembelajaran untuk mendukung proses
+                belajar yang menyenangkan dan interaktif.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#materi"
+                   class="btn btn-primary">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    Mulai Belajar
+
+                </a>
+
+
+                <a href="#tentang"
+                   class="btn btn-outline">
+
+                    Tentang Guru
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <div class="floating-card card-one">
+
+                <i class="fa-solid fa-book"></i>
+
+                <div>
+
+                    <strong>Materi</strong>
+
+                    <small>
+                        Pembelajaran
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="teacher-circle">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+            </div>
+
+
+            <div class="floating-card card-two">
+
+                <i class="fa-solid fa-video"></i>
+
+                <div>
+
+                    <strong>Video</strong>
+
+                    <small>
+                        Pembelajaran
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PILIHAN PEMBELAJARAN
+===================================================== -->
+
+<section class="section" id="pilihan">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                Fasilitas Pembelajaran
+            </span>
+
+            <h2>
+                Jelajahi Ruang Belajar
+            </h2>
+
+            <p>
+                Berbagai sumber belajar tersedia untuk
+                membantu peserta didik memahami materi
+                secara lebih mudah.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <!-- MATERI -->
+
+            <a href="#materi"
+               class="feature-card">
+
+                <div class="icon-box blue">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <h3>
+                    Materi Pembelajaran
+                </h3>
+
+                <p>
+                    Materi pembelajaran yang disusun
+                    secara sistematis dan mudah dipahami.
+                </p>
+
+                <span class="read-more">
+                    Lihat Materi →
+                </span>
+
+            </a>
+
+
+            <!-- MODUL -->
+
+            <a href="#modul"
+               class="feature-card">
+
+                <div class="icon-box purple">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                </div>
+
+                <h3>
+                    Modul Ajar
+                </h3>
+
+                <p>
+                    Kumpulan modul ajar sebagai panduan
+                    pembelajaran peserta didik.
+                </p>
+
+                <span class="read-more">
+                    Lihat Modul →
+                </span>
+
+            </a>
+
+
+            <!-- LKPD -->
+
+            <a href="#lkpd"
+               class="feature-card">
+
+                <div class="icon-box orange">
+
+                    <i class="fa-solid fa-pen-to-square"></i>
+
+                </div>
+
+                <h3>
+                    LKPD
+                </h3>
+
+                <p>
+                    Lembar kerja peserta didik untuk
+                    latihan dan aktivitas pembelajaran.
+                </p>
+
+                <span class="read-more">
+                    Lihat LKPD →
+                </span>
+
+            </a>
+
+
+            <!-- VIDEO -->
+
+            <a href="#video"
+               class="feature-card">
+
+                <div class="icon-box red">
+
+                    <i class="fa-solid fa-circle-play"></i>
+
+                </div>
+
+                <h3>
+                    Video Pembelajaran
+                </h3>
+
+                <p>
+                    Video pembelajaran untuk membantu
+                    memahami materi secara visual.
+                </p>
+
+                <span class="read-more">
+                    Lihat Video →
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MATERI
+===================================================== -->
+
+<section class="section" id="materi">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                Materi Pembelajaran
+            </span>
+
+            <h2>
+                Kumpulan Materi
+            </h2>
+
+            <p>
+                Pilih materi pembelajaran yang ingin dipelajari.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-wrapper">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari materi, modul, atau LKPD..."
+                onkeyup="searchContent()">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </div>
+
+
+        <div class="feature-grid" id="contentGrid">
+
+
+            <!-- MATERI 1 -->
+
+            <div class="feature-card searchable"
+                 data-title="persamaan dasar akuntansi">
+
+                <div class="icon-box blue">
+
+                    <i class="fa-solid fa-calculator"></i>
+
+                </div>
+
+                <h3>
+                    Persamaan Dasar Akuntansi
+                </h3>
+
+                <p>
+                    Memahami konsep dasar persamaan
+                    akuntansi dan hubungan antara aset,
+                    liabilitas, dan ekuitas.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showNotification('Materi Persamaan Dasar Akuntansi dibuka')">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Pelajari
+
+                </button>
+
+            </div>
+
+
+            <!-- MATERI 2 -->
+
+            <div class="feature-card searchable"
+                 data-title="jurnal umum">
+
+                <div class="icon-box purple">
+
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                </div>
+
+                <h3>
+                    Jurnal Umum
+                </h3>
+
+                <p>
+                    Materi mengenai konsep dan pencatatan
+                    transaksi ke dalam jurnal umum.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showNotification('Materi Jurnal Umum dibuka')">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Pelajari
+
+                </button>
+
+            </div>
+
+
+            <!-- MATERI 3 -->
+
+            <div class="feature-card searchable"
+                 data-title="buku besar">
+
+                <div class="icon-box orange">
+
+                    <i class="fa-solid fa-book"></i>
+
+                </div>
+
+                <h3>
+                    Buku Besar
+                </h3>
+
+                <p>
+                    Mempelajari proses posting transaksi
+                    dari jurnal ke buku besar.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showNotification('Materi Buku Besar dibuka')">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Pelajari
+
+                </button>
+
+            </div>
+
+
+            <!-- MATERI 4 -->
+
+            <div class="feature-card searchable"
+                 data-title="laporan keuangan">
+
+                <div class="icon-box green">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+                <h3>
+                    Laporan Keuangan
+                </h3>
+
+                <p>
+                    Memahami jenis dan penyusunan
+                    laporan keuangan perusahaan.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showNotification('Materi Laporan Keuangan dibuka')">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Pelajari
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MODUL AJAR
+===================================================== -->
+
+<section class="section"
+         id="modul"
+         style="background:#f8faff;">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                Modul Ajar
+            </span>
+
+            <h2>
+                Modul Pembelajaran
+            </h2>
+
+            <p>
+                Modul pembelajaran yang dapat digunakan
+                sebagai bahan belajar mandiri.
+            </p>
+
+        </div>
+
+
+        <div class="resource-grid">
+
+
+            <div class="resource-card">
+
+                <div class="resource-icon red">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                </div>
+
+                <h3>
+                    Modul Persamaan Dasar Akuntansi
+                </h3>
+
+                <p>
+                    Modul pembelajaran untuk memahami
+                    konsep persamaan dasar akuntansi.
+                </p>
+
+                <!--
+                    GANTI href DENGAN FILE PDF ANDA
+                -->
+
+                <a href="assets/modul-persamaan-akuntansi.pdf"
+                   class="btn btn-primary"
+                   download>
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download Modul
+
+                </a>
+
+            </div>
+
+
+            <div class="resource-card">
+
+                <div class="resource-icon purple">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                </div>
+
+                <h3>
+                    Modul Jurnal Umum
+                </h3>
+
+                <p>
+                    Modul pembelajaran mengenai
+                    pencatatan transaksi.
+                </p>
+
+                <a href="assets/modul-jurnal-umum.pdf"
+                   class="btn btn-primary"
+                   download>
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download Modul
+
+                </a>
+
+            </div>
+
+
+            <div class="resource-card">
+
+                <div class="resource-icon blue">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                </div>
+
+                <h3>
+                    Modul Laporan Keuangan
+                </h3>
+
+                <p>
+                    Modul mengenai penyusunan
+                    laporan keuangan.
+                </p>
+
+                <a href="assets/modul-laporan-keuangan.pdf"
+                   class="btn btn-primary"
+                   download>
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download Modul
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LKPD
+===================================================== -->
+
+<section class="section"
+         id="lkpd">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                LKPD
+            </span>
+
+            <h2>
+                Lembar Kerja Peserta Didik
+            </h2>
+
+            <p>
+                Kerjakan aktivitas berikut untuk
+                memperdalam pemahaman terhadap materi.
+            </p>
+
+        </div>
+
+
+        <div class="resource-grid">
+
+
+            <div class="resource-card">
+
+                <div class="resource-icon orange">
+
+                    <i class="fa-solid fa-clipboard-list"></i>
+
+                </div>
+
+                <h3>
+                    LKPD Persamaan Dasar Akuntansi
+                </h3>
+
+                <p>
+                    Latihan analisis transaksi dan
+                    persamaan dasar akuntansi.
+                </p>
+
+                <a href="assets/lkpd-persamaan-akuntansi.pdf"
+                   class="btn btn-primary"
+                   download>
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download LKPD
+
+                </a>
+
+            </div>
+
+
+            <div class="resource-card">
+
+                <div class="resource-icon blue">
+
+                    <i class="fa-solid fa-clipboard-check"></i>
+
+                </div>
+
+                <h3>
+                    LKPD Jurnal Umum
+                </h3>
+
+                <p>
+                    Latihan pencatatan transaksi
+                    ke dalam jurnal umum.
+                </p>
+
+                <a href="assets/lkpd-jurnal-umum.pdf"
+                   class="btn btn-primary"
+                   download>
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download LKPD
+
+                </a>
+
+            </div>
+
+
+            <div class="resource-card">
+
+                <div class="resource-icon green">
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                </div>
+
+                <h3>
+                    LKPD Laporan Keuangan
+                </h3>
+
+                <p>
+                    Aktivitas penyusunan laporan
+                    keuangan sederhana.
+                </p>
+
+                <a href="assets/lkpd-laporan-keuangan.pdf"
+                   class="btn btn-primary"
+                   download>
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Download LKPD
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VIDEO
+===================================================== -->
+
+<section class="section"
+         id="video"
+         style="background:#f8faff;">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                Video Pembelajaran
+            </span>
+
+            <h2>
+                Belajar Melalui Video
+            </h2>
+
+            <p>
+                Simak video pembelajaran berikut untuk
+                membantu memahami materi.
+            </p>
+
+        </div>
+
+
+        <div class="video-grid">
+
+
+            <!-- VIDEO 1 -->
+
+            <div class="video-card">
+
+                <div class="video-container">
+
+                    <!--
+                        GANTI LINK YOUTUBE DI SINI
+                    -->
+
+                    <iframe
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Video Pembelajaran"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="video-content">
+
+                    <h3>
+                        Persamaan Dasar Akuntansi
+                    </h3>
+
+                    <p>
+                        Penjelasan konsep persamaan
+                        dasar akuntansi.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- VIDEO 2 -->
+
+            <div class="video-card">
+
+                <div class="video-container">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Video Pembelajaran"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="video-content">
+
+                    <h3>
+                        Pencatatan Jurnal Umum
+                    </h3>
+
+                    <p>
+                        Video pembelajaran mengenai
+                        jurnal umum.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROFIL GURU
+===================================================== -->
+
+<section class="teacher-section"
+         id="tentang">
+
+    <div class="container teacher-container">
+
+
+        <div class="teacher-photo">
+
+            <div class="photo-placeholder">
+
+                <i class="fa-solid fa-user-tie"></i>
+
+            </div>
+
+        </div>
+
+
+        <div class="teacher-info">
+
+            <span class="section-label">
+                Profil Guru
+            </span>
+
+            <h2>
+                Selamat Datang di
+                Ruang Belajar Saya
+            </h2>
+
+            <p>
+
+                Website ini dikembangkan sebagai media
+                pembelajaran digital untuk menyediakan
+                berbagai sumber belajar yang dapat diakses
+                kapan saja dan di mana saja.
+
+            </p>
+
+
+            <p>
+
+                Melalui website ini peserta didik dapat
+                mengakses materi pembelajaran, modul ajar,
+                LKPD, dan video pembelajaran secara lebih
+                fleksibel.
+
+            </p>
+
+
+            <div class="teacher-details">
+
+                <div class="detail-box">
+
+                    <strong>
+                        NAMA GURU
+                    </strong>
+
+                    <span>
+                        Nama Guru, S.Pd.
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <strong>
+                        MATA PELAJARAN
+                    </strong>
+
+                    <span>
+                        Dasar-Dasar Akuntansi
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <strong>
+                        SEKOLAH
+                    </strong>
+
+                    <span>
+                        Nama Sekolah
+                    </span>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <strong>
+                        LOKASI
+                    </strong>
+
+                    <span>
+                        Yogyakarta, Indonesia
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <a href="mailto:guru@email.com"
+               class="btn btn-primary">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                Hubungi Guru
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STATISTIK
+===================================================== -->
+
+<section class="stats-section">
+
+    <div class="container stats-grid">
+
+
+        <div class="stat">
+
+            <i class="fa-solid fa-book"></i>
+
+            <strong>
+                20+
+            </strong>
+
+            <span>
+                Materi
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <strong>
+                10+
+            </strong>
+
+            <span>
+                Modul Ajar
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <i class="fa-solid fa-clipboard-list"></i>
+
+            <strong>
+                15+
+            </strong>
+
+            <span>
+                LKPD
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <i class="fa-brands fa-youtube"></i>
+
+            <strong>
+                20+
+            </strong>
+
+            <span>
+                Video
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container footer-container">
+
+
+        <div>
+
+            <div class="logo footer-logo">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <span>
+                    Ruang<span>Belajar</span>
+                </span>
+
+            </div>
+
+
+            <p>
+
+                Media pembelajaran digital untuk mendukung
+                pembelajaran yang efektif, interaktif,
+                dan bermakna.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Navigasi
+            </h4>
+
+            <a href="#beranda">
+                Beranda
+            </a>
+
+            <a href="#materi">
+                Materi
+            </a>
+
+            <a href="#modul">
+                Modul Ajar
+            </a>
+
+            <a href="#lkpd">
+                LKPD
+            </a>
+
+            <a href="#video">
+                Video
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Kontak
+            </h4>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                guru@email.com
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Yogyakarta, Indonesia
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Ruang Belajar Guru.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+
+<!-- NOTIFICATION -->
+
+<div id="notification"
+     class="notification">
+
+    Materi berhasil dibuka.
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    /* =========================
+       MENU MOBILE
+    ========================= */
+
+    function toggleMenu() {
+
+        const nav =
+            document.getElementById("navMenu");
+
+        nav.classList.toggle("show");
+
+    }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    function searchContent() {
+
+        const input =
+            document.getElementById("searchInput");
+
+        const keyword =
+            input.value.toLowerCase();
+
+        const cards =
+            document.querySelectorAll(".searchable");
+
+
+        cards.forEach(function(card) {
+
+            const title =
+                card.dataset.title.toLowerCase();
+
+            if (title.includes(keyword)) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================
+       NOTIFICATION
+    ========================= */
+
+    function showNotification(message) {
+
+        const notification =
+            document.getElementById("notification");
+
+        notification.textContent = message;
+
+        notification.classList.add("show");
+
+
+        setTimeout(function() {
+
+            notification.classList.remove("show");
+
+        }, 2500);
+
+    }
+
+
+    /* =========================
+       CLOSE MOBILE MENU
+    ========================= */
+
+    document.querySelectorAll("#navMenu a")
+        .forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                document
+                    .getElementById("navMenu")
+                    .classList.remove("show");
+
+            });
+
+        });
+
+
+    /* =========================
+       ACTIVE NAVIGATION
+    ========================= */
+
+    window.addEventListener("scroll", function() {
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const links =
+            document.querySelectorAll("#navMenu a");
+
+
+        let current = "";
+
+
+        sections.forEach(function(section) {
+
+            const sectionTop =
+                section.offsetTop - 100;
+
+            const sectionHeight =
+                section.clientHeight;
+
+            if (
+                window.scrollY >= sectionTop &&
+                window.scrollY <
+                sectionTop + sectionHeight
+            ) {
+
+                current =
+                    section.getAttribute("id");
+
+            }
+
+        });
+
+
+        links.forEach(function(link) {
+
+            link.classList.remove("active");
+
+            if (
+                link.getAttribute("href") ===
+                "#" + current
+            ) {
+
+                link.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
+```
